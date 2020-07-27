@@ -1,4 +1,4 @@
-<include a CircleCI status badge, here>
+<img src="https://circleci.com/gh/jplessey/ml_microservice_docker_k8s.svg?style=svg" alt="jplessey">
 
 # Udacity Cloud DevOps Nanodregree 2020
 ## Project 4: Operationalize a Machine Learning Microservice API
