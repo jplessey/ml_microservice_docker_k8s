@@ -9,6 +9,7 @@ WORKDIR /app
 COPY app.py /app/
 COPY requirements.txt /app/
 COPY model_data /app/model_data
+COPY Dockerfile /app/
 
 ## Step 3:
 # Install packages from requirements.txt
