@@ -89,7 +89,18 @@ Once a cluster has been started (you can use the same from the instructions abov
 * `run_kubernetes.sh`:  Runs a Docker image in Kubernetes.
 * `make_prediction.sh`: API call to test app.
 * `run_deployment.sh`: Creates a deployment and a service in Kubernetes.
-* `microservice_deployment.yaml`: Deployment's configuration.
+* `microservice_deployment.yaml`: Deployment's manifest.
 * `make_many_predictions.sh`: API calls to test deployment.
 * `.circleci` folder: Testing configuration with CircleCI. 
 * `output_txt_files` folder: Output text from running the app.
+
+---
+
+### Sources:
+
+* Docker documentation.
+* Kubernetes documentation.
+* Hello Minikube <a href="https://kubernetes.io/docs/tutorials/hello-minikube/">Tutorial</a>.
+* Horizontal Pod Autoscaler <a href="https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/">Documentation</a>.
+* Horizontal Pod Autoscaler <a href="https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/">Walkthrough</a>.
+* CircleCI documentation.
