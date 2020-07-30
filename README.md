@@ -25,6 +25,8 @@ To take the project further, I added the following tasks:
 * Create a Horizontal Pod Autoscaler (HPA) associated with the Deployment.
 * Test the autoscaling implementation under a heavy load of API calls.
 
+---
+
 ### Running the containerized App
 
 (Docker required)
@@ -47,5 +49,18 @@ Once a cluster ha been started (you can use the same from the instructions above
     * Create a Service associated with the deployment. This will make the App listen from a new URL to be able to scale.
     * Enable metrics-server addon in Minikube. This will provide the necesary metrics to make the App scale.     
 2. Again, check the new pod's status with a call to `kubectl get pod`
-3. Create the HPA by typing:
-   `kubectl autoscale deployment microserv-deployment --cpu-percent=40 --min=1 --max=5`
+3. Type: `kubectl autoscale deployment microserv-deployment --cpu-percent=40 --min=1 --max=5`
+   * This will create the Horizontal Pod Autoscaler (HPA) assciated with the deployment
+   * There will be between 1 and 5 pods in order to keep a 40% CPU usage across all pods
+4. Type `kubectl get all` to see all the resources that you've have created so far and their status. This will be the information showed after some time, when you'll be able to see that everything is running and showing the data from metrics:
+
+<p align="center">
+<img src="images/get_all11.png">
+</p>
+
+5. To get info specifically about the HPA type `kubectl get hpa` . You ca do the same with the other resources.
+6. To test that everything is Ok, make an API call by typing `./make_many_predictions.sh` in a second Terminal window. This script will hit the URL provided by the Service and the output shoul be something like this: 
+
+<p align="center">
+<img src="images/many_predictions.png">
+</p>
