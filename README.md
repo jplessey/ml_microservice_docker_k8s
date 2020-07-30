@@ -58,9 +58,19 @@ Once a cluster ha been started (you can use the same from the instructions above
 <img src="images/get_all11.png">
 </p>
 
-5. To get info specifically about the HPA type `kubectl get hpa` . You ca do the same with the other resources.
-6. To test that everything is Ok, make an API call by typing `./make_many_predictions.sh` in a second Terminal window. This script will hit the URL provided by the Service and the output shoul be something like this: 
+5. To get info specifically about the HPA type `kubectl get hpa` . You can do the same with the other resources.
+6. To test that everything is Ok, make an API call by typing `./make_many_predictions.sh` in a second Terminal window. This script will hit the URL provided by the Service and the output should be something like this: 
 
 <p align="center">
 <img src="images/many_predictions.png">
 </p>
+
+7. In the same second terminal window, type `while true; do ./make_many_predictions.sh; done` which will run a loop of 3 API calls, over and over, in order to increase CPU usage. Let the loop run. (You can always get out of the loop by typing `CTRL + C`). 
+8. Go back to your first terminal window, and after some seconds or minutes, check the status by typing `kubectl get hpa`. You'll see CPU usage has increased and new pods have been automatically deployed in order to meet the 40% target. Then, when everything is stable, this will be the output of typing `kubectl get all` with new pods up and running: 
+
+<p align="center">
+<img src="images/get_all22.png">
+</p>
+
+9. Stop the API calls loop by typing `CTRL + C`. Wait for some minutes and then check the HPA status with `kubectl get hpa` to see how the App scales down. Evetually it will get into the initial state of one (1) pod.
+
