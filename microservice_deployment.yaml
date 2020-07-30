@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microserv-deployment
+spec:
+  selector:
+    matchLabels:
+      run: microserv-deployment
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: microserv-deployment
+    spec:
+      containers:
+      - name: microservice
+        image: jlessey/microservice:latest
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
+            
