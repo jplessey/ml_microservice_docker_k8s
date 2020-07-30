@@ -49,29 +49,29 @@ Once a cluster has been started (you can use the same from the instructions abov
     * Create a Service associated with the deployment. This will give the app an endpoint to get API calls.
     * Enable metrics-server addon in Minikube. This will provide the necesary metrics to make the App scale.     
 2. Type: `kubectl autoscale deployment microserv-deployment --cpu-percent=40 --min=1 --max=5`
-   * This will create the Horizontal Pod Autoscaler (HPA) assciated with the deployment.
+   * This will create the Horizontal Pod Autoscaler (HPA) associated with the deployment.
    * There will be 1 to 5 pods in order to keep a 40% CPU usage across all pods.
-3. Type `kubectl get all` to see all the resources that you've have created so far and their status. This will be the information showed after some time and you should be able to see that everything is up and running with all the data from the metrics:
+3. Type `kubectl get all` to see all the resources that you've have created so far and their status. The picture below will be the information showed after some minutes and you should be able to see that everything is up and running with all the data from the metrics:
 
 <p align="center">
 <img src="images/get_all11.png">
 </p>
 
 4. To get info specifically on the HPA, just type `kubectl get hpa` . You can do the same with other resources as well.
-5. To test that everything is OK, make an API call by typing `./make_many_predictions.sh` in a second terminal window. This script will hit the endpoint provided by the Service and the output should be something like this: 
+5. To test that everything is OK, make API calls by typing `./make_many_predictions.sh` in a second terminal window. This script will hit the endpoint provided by the Service and the output should be something like this: 
 
 <p align="center">
 <img src="images/many_predictions.png">
 </p>
 
 6. In the same second terminal window, type `while true; do ./make_many_predictions.sh; done`, which will run a loop of 3 API calls in order to increase CPU usage. Let the loop run. (You can always get out of the loop by typing `CTRL + C`). 
-7. Go back to your first terminal window and after a couple of minutes, check the status by typing `kubectl get hpa`. You'll see CPU usage has increased and new pods have been automatically deployed in order to meet the 40% target. Then, when everything is stable, this will be the output of typing `kubectl get all` with all the new pods up and running: 
+7. Go back to your first terminal window. Wait some minutes and check the status by typing `kubectl get hpa`. You'll see CPU usage has increased and new pods have been automatically deployed in order to meet the 40% target. Then, when everything is stable, this will be the output of typing `kubectl get all` with all the new pods up and running: 
 
 <p align="center">
 <img src="images/get_all22.png">
 </p>
 
-8. Stop loop by typing `CTRL + C`. Wait for some minutes and then check the HPA status with `kubectl get hpa` to see how the deployment scales down. Evetually it will get into the initial state of one (1) pod.
+8. Stop the loop by typing `CTRL + C`. Wait some minutes and check the HPA status with `kubectl get hpa` to see how the deployment scales down. Evetually it will get into the initial state of one (1) pod.
 9. Finally, delete resources by typing `kubectl delete <RESOURCE> microserv-deployment`. Optionally, you can stop the cluster by typing `minikube stop`, and delete the entire cluster `minikube delete`
 
 ---
@@ -91,4 +91,5 @@ Once a cluster has been started (you can use the same from the instructions abov
 * `run_deployment.sh`: Creates a deployment and a service in Kubernetes.
 * `microservice_deployment.yaml`: Deployment's configuration.
 * `make_many_predictions.sh`: API calls to test deployment.
-* `.circleci` directory: Testing configuration with CircleCI. 
+* `.circleci` folder: Testing configuration with CircleCI. 
+* `output_txt_files` folder: Output text from running the app.
